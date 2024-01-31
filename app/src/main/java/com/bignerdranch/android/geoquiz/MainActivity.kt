@@ -1,49 +1,33 @@
 package com.bignerdranch.android.geoquiz
 
 import android.os.Bundle
-import android.widget.Button
-import android.widget.Toast
+import android.util.Log
+import android.widget.TextView
 import androidx.activity.ComponentActivity
+import com.bignerdranch.android.geoquiz.databinding.ActivityMainBinding
 import com.google.android.material.snackbar.Snackbar
-import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.bignerdranch.android.geoquiz.ui.theme.GeoQuizTheme
 
 class MainActivity : ComponentActivity() {
 
-    private lateinit var trueButton: Button
-    private lateinit var falseButton: Button
+    private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(R.layout.activity_main)
 
-        trueButton = findViewById(R.id.true_button)
-        falseButton = findViewById(R.id.false_button)
-
-        trueButton.setOnClickListener{
-            Snackbar.make(
-                findViewById(android.R.id.content),
-                R.string.correct_toast,
-                Snackbar.LENGTH_SHORT
-            ).show()
+        binding.trueButton.setOnClickListener{
+            Snackbar.make(binding.root, "True", Snackbar.LENGTH_SHORT).show()
+            Log.d("ButtonClicked", "True button clicked")
         }
 
-        falseButton.setOnClickListener {
-            Snackbar.make(
-                findViewById(android.R.id.content),
-                R.string.incorrect_toast,
-                Snackbar.LENGTH_SHORT
-            ).show()
+        binding.falseButton.setOnClickListener {
+            Snackbar.make(binding.root, "False", Snackbar.LENGTH_SHORT).show()
+            Log.d("ButtonClicked", "False button clicked")
         }
-
     }
+
 }
 
 
